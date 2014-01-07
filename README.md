@@ -1,13 +1,12 @@
-# Ruby Drill Destructive Methods 
- 
-##Learning Competencies 
+# Ruby Drill Destructive Methods
 
-##Summary 
+##Learning Competencies
+
+##Summary
 
  The fundamental way that programmers organize their code is by writing methods. Methods (the code you write between `def` and `end`) have input, output, and side-effects.
 
-A method's input is the arguments you pass in, such as in `puts "hi mom"`, where the `puts` method's input is the argument "hi mom". The `puts` method takes input, but only ever returns `nil`
-as output. Its side-effect is that it writes to STDOUT. On the other hand, many methods have no side-effects (also known as functions) and are purely input/output. For example, `File.exists?("app/models")` takes `"app/models"` as input, and returns `true` or `false`.
+A method's input is the arguments you pass in, such as in `puts "hi mom"`, where the `puts` method's input is the argument "hi mom". The `puts` method takes input, but only ever returns `nil` as output. Its side-effect is that it writes to STDOUT. On the other hand, many methods have no side-effects (also known as functions) and are purely input/output. For example, `File.exists?("app/models")` takes `"app/models"` as input, and returns `true` or `false`.
 
 One of the conventions that you'll learn in Ruby is that methods with side-effects are appended with a `!` (what programmers call a "bang"). This helps future programmers calling these methods understand that when they call it, something serious is happening behind the scenes.
 
@@ -27,7 +26,7 @@ You will be writing two versions of a method called `destroy_message` which take
 
 * A message is a string that may or may not contain a `":"`
 * If the original message contains a `":"` then all content after (but not including) the `":"` is removed when the message self-destructs. So if the original message is `"This message will self destruct: Ruby is fun"` then the destructed message is `"This message will self destruct:"`.
-* If the original message does not contain a `":"` then it will not change in when it is destructed. 
+* If the original message does not contain a `":"` then it will not change in when it is destructed.
 
 ### Writing methods with no side effects
 
@@ -67,11 +66,11 @@ name.sub!('Jones', 'Jimmy Jones')
 # the original value.
 name
 # => "Mr. Billy Jimmy Jones"
-``` 
+```
 
 ##Releases
-###Release 0 
+###Release 0
 
-##Optimize Your Learning 
+##Optimize Your Learning
 
 ##Resources
