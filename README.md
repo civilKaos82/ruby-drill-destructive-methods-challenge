@@ -13,7 +13,7 @@ to_snake_case!(class_name)
 class_name
 # => "some_class_name"
 ```
-*Figure 1*. A non-destructive `to_snake_case` method and a destructive `to_snake_case!` method.
+*Figure 1*. A `to_snake_case` method and a dangerous equivalent method with a side effect.
 
 What is the difference between the `to_snake_case` and `to_snake_case!` methods in Figure 1?  Both take the same object as input and return the same output value.  The difference is in what happens to the argument to each method.  In addition to providing a return value, the `to_snake_case!`method changes the object passed to it.
 
