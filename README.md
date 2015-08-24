@@ -46,7 +46,7 @@ We should only add a bang to a method name if there is a non-dangerous equivalen
 
 
 
-##Releases
+## Releases
 ### Release 0: Writing a Method with No Side Effects
 We are going to write a pair of methods: one method with no side effects and a more dangerous equivalent method.  We'll start with the method that has no side effects, the `destroy_message` method.
 
@@ -69,7 +69,7 @@ Our `destroy_message` method needs to conform to the following rules (see Figure
 Some test have been provided to help verify our solution.  We can add more as we discover bugs and edge cases.
 
 
-###Release 1 : The Dangerous Version
+### Release 1 : The Dangerous Version
 ```ruby
 message = "Note: Come prepared for yoga."
 # => "Note: Come prepared for yoga."
