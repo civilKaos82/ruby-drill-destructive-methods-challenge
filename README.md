@@ -69,7 +69,7 @@ Our `destroy_message` method needs to conform to the following rules (see Figure
 Some test have been provided to help verify our solution.  We can add more as we discover bugs and edge cases.
 
 
-### Release 1 : The Dangerous Version
+### Release 1: The Dangerous Version
 ```ruby
 message = "Note: Come prepared for yoga."
 # => "Note: Come prepared for yoga."
@@ -83,6 +83,12 @@ message
 Now we'll write a more dangerous version:  `destroy_message!`.  This method will behave the same as `destroy_message` except that this dangerous method will have a side effect:  it's destructive and permanently modifies its argument (see Figure 3).
 
 Again, some tests have been provided.
+
+
+### Release 2: Don't Repeat Yourself and Other Refactoring
+We have two methods that behave almost identically.  This could result in us repeating ourselves.  Are our methods implementing the same logic?  Let's take a moment to refactor our code, making it DRY and generally improving its quality.
+
+*Note:* Equivalent methods like these are often written so that one of the methods relies on its pair for the basic behavior.
 
 
 ## Conclusion
