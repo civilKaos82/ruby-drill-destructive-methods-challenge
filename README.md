@@ -1,48 +1,52 @@
 # Ruby Drill Destructive Methods
 
-##Learning Competencies
-
-- Preserving/consuming method arguments
-- Modifying values in place
-
-##Summary
-
-The fundamental way that programmers organize their code is by writing methods. Methods (the code you write between `def` and `end`) usually have _input_ and _output_.
-
-A method's input is made up of the argument(s) you pass in. Let's look at a method:
-
+## Summary
 ```ruby
-def double(x)
-  return x * 2
-end
-
-double(2) #=> 4
+class_name = "SomeClassName"
+# => "SomeClassName"
+to_snake_case(class_name)
+# => "some_class_name"
+class_name
+# => "SomeClassName"
+to_snake_case!(class_name)
+# => "some_class_name"
+class_name
+# => "some_class_name"
 ```
+*Figure 1*. A non-destructive `to_snake_case` method and a destructive `to_snake_case!` method.
 
-In the code above, `double` is the method and `2` is the method's input. The method's _output_ is whatever the method returns. In this case, the output is `4`.
+What is the difference between the `to_snake_case` and `to_snake_case!` methods in Figure 1?  Both take the same object as input and return the same output value.  The difference is in what happens to the argument to each method.  In addition to providing a return value, the `to_snake_case!`method changes the object passed to it.
 
-Methods that take an input and provide an output are also known as "pure functions" because they don't affect anything outside of themselves. The only things that change happen between `def` and `end`, the world before and after the method runs is exactly the same.
+In Ruby, it's not uncommon to encounter such pairs of methods—for example, `String#upcase` and `String#upcase!` or `Array#map` and `Array#map!`.  We'll be writing a pair of such methods in this challenge.
 
-Some methods have what we call _side-effects_. Methods with side-effects are also known as "impure functions" because they mess with things outside themselves. Side-effects are things that change outside your method when the method runs. Let's look at an example of an impure function:
+We generally think of methods in terms of their *inputs* and *outputs*.  Arguments are passed into the methods.  Some value comes out of the method.  In Figure 1, we input the string `'SomeClassName'` to the `to_snake_case` method, and the string `'some_class_name` comes out of the method.  And that's all that happens.
 
-```ruby
-def add_gusto(message)
-  message += "!"
-end
+Methods that take input and provide an output are sometimes known as *[pure functions]* because they don't affect anything outside of themselves. The only things that change happen between `def` and `end`; the world before and after the method runs is exactly the same.
 
-hello_msg = "Hello"
-add_gusto(hello_msg)
-hello_msg #=> "Hello!"
-```
+Other methods have what we call *side-effects*.  Side-effects are changes that occur outside of a method when the method runs.  Maybe a file is written or text is printed to the command line.  Methods with side-effects are also known as *impure functions*.
 
-See what happened? Our `add_gusto` method took its input and "modified it in place". If we look at our `hello_msg` before and after calling `add_gusto` we see that it is not the same. `add_gusto` actually changed it instead of returning a new string. In other words, `add_gusto` had a side-effect: it modified the original string that we declared _outside_ the method. `add_gusto` is an example of a **destructive method**.
+A common side-effect, as seen in Figure 1, is mutating, or changing, an object.  What happens to the value of our variable `class_name` when we pass it to the `to_snake_case!` method?  The object changes.  The variable `class_name` still points to the same string object, but the object has changed.  It's value was changed from `SomeClassName` to `some_class_name`—it was *modified in place*.  Methods that have the side effect of changing objects' values are often referred to as *destructive methods*.
 
-One of the conventions that you'll learn in Ruby is that methods with side-effects are appended with a `!` (what programmers call a "bang"). This helps future programmers calling these methods understand that when they call it, something serious is happening behind the scenes and a side-effect will occur.
 
-For this exercise, you will write a function (a method with no side-effects), and then a method with the side-effect of "destroying" its input argument.
+### Convention for Using ! in Method Names
+> The bang (!) does not mean "destructive" nor lack of it mean non
+destructive either.  The bang sign means "the bang version is more
+dangerous than its non bang counterpart; handle with care".
 
-*Note: the bang `!` symbol is used because permanently modifying data is dangerous. Use destructive methods with caution.*
+> Yukihiro Matsumoto (see [post][Matz comment])
 
+In the example methods that we've mentioned, we've seen pairs of similarly named methods wherein one method's name ends in a *bang*, an exclamation point.  For example, `String#upcase` and `String#upcase!`.  What does the bang mean, and when do we use it?
+
+The bang signifies danger.  What type of danger?  That depends.  Sometimes the danger is that the method is destructive, while sometimes it's another danger.  We understand the danger when we compare a dangerous method to a similar non-dangerous method.  In our example of converting a string to snake case in Figure 1, we can compare `to_snake_case` to `to_snake_case!` and see the danger is that `to_snake_case!` mutates its argument.
+
+We should only add a bang to a method name if there is a non-dangerous equivalent.
+
+*Note:*  For more detail, see David A. Black's blog post *[Bang methods; or, Danger, Will Rubyist!][bang post]*
+
+
+
+
+##Releases
 ###Rules for your method
 
 You will be writing two versions of a method called `destroy_message` which takes in a string identified by the variable `message` and modifies that string based upon the following rules:
@@ -53,7 +57,6 @@ You will be writing two versions of a method called `destroy_message` which take
 
 There are already some tests you can use to verify your solution, but you can add more as you discover bugs and edge cases.
 
-##Releases
 
 ###Release 0 : Writing methods with no side effects
 
@@ -94,3 +97,7 @@ name.sub!('Jones', 'Jimmy Jones')
 name
 # => "Mr. Billy Jimmy Jones"
 ```
+
+[bang post]: http://dablog.rubypal.com/2007/8/15/bang-methods-or-danger-will-rubyist
+[Matz comment]: https://www.ruby-forum.com/topic/176830#773946
+[pure functions]: https://en.wikipedia.org/wiki/Pure_function
