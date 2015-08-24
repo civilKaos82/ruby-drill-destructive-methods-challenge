@@ -1,4 +1,4 @@
-require_relative '../this_message_will_self_destruct'
+require_relative '../destroy_message'
 
 describe 'destroy_message' do
   context 'message contains an alert' do
@@ -14,8 +14,9 @@ describe 'destroy_message' do
   end
 
   context 'message does not contain an alert' do
+    let(:message) { 'This has no alert.' }
+
     it 'returns the whole message' do
-      message = 'This has no alert.'
       expect(destroy_message(message)).to eq "This has no alert."
     end
 
@@ -34,13 +35,14 @@ describe 'destroy_message!' do
     end
 
     it 'modifies its argument be be just the prompt' do
-      expect { destroy_message(message) }.to change { message }.to { 'Important:' }
+      expect { destroy_message(message) }.to change { message }.to('Important:')
     end
   end
 
   context 'message does not contain an alert' do
+    let(:message) { 'No alert here.' }
+
     it 'returns the whole message' do
-      message = 'No alert here.'
       expect(destroy_message(message)).to eq 'No alert here.'
     end
 
