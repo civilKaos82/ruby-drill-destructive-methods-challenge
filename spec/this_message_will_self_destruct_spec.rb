@@ -1,4 +1,4 @@
-require_relative('this_message_will_self_destruct')
+require_relative '../this_message_will_self_destruct'
 
 describe 'destroy_message' do
   it 'should not modify the provided string' do
