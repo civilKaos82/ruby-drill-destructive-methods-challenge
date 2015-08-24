@@ -47,56 +47,43 @@ We should only add a bang to a method name if there is a non-dangerous equivalen
 
 
 ##Releases
-###Rules for your method
-
-You will be writing two versions of a method called `destroy_message` which takes in a string identified by the variable `message` and modifies that string based upon the following rules:
-
-* A message is a string that may or may not contain a `":"`
-* If the original message contains a `":"` then all content after (but not including) the `":"` is removed when the message self-destructs. So if the original message is `"This message will self destruct: Ruby is fun"` then the destructed message is `"This message will self destruct:"`.
-* If the original message does not contain a `":"` then it will not change in when it is destructed.
-
-There are already some tests you can use to verify your solution, but you can add more as you discover bugs and edge cases.
-
-
-###Release 0 : Writing methods with no side effects
-
-Start by writing the `destroy_message` method following the rules outlined above. It **must not** permanently alter the original string passed in.
-
-What does that mean? Here is an example of a *non-destructive* method:
+### Release 0: Writing a Method with No Side Effects
+We are going to write a pair of methods: one method with no side effects and a more dangerous equivalent method.  We'll start with the method that has no side effects, the `destroy_message` method.
 
 ```ruby
-name = "Mr. Billy Jones"
-
-# The String#sub method replaces one part of the string
-# with another and returns the new, modified string.
-name.sub('Jones', 'Jimmy Jones')
-# => "Mr. Billy Jimmy Jones"
-
-# But it does NOT permanently change the string, as we
-# can see here:
-name
-# => "Mr. Billy Jones"
+destroy_message("For your eyes only: Have a great day!")
+# => "For your eyes only:"
+destroy_message("Important: Read the error message.")
+# => "Important:"
+destroy_message("Lacking an alert.")
+# => "Lacking an alert."
 ```
+*Figure 2*.  Using the `destroy_message` method.
 
-###Release 1 : Destroying everything!
+Our `destroy_message` method needs to conform to the following rules (see Figure 2 for example usage).  We'll refer to the string passed when calling the method as the *message*.  Any characters from the beginning of the message through the first colon are considered the *alert*; not all messages have alerts.
 
-Now, write the method `destroy_message!` which does the same thing as `destroy_message` (without the `!`) **except** that this new method will permanently modify the original string.
+- The method does not alter the object passed when calling the method.
+- If the message contains an alert, the method returns just the alert.
+- If the argument does not contain an alert, the method returns the whole message.
 
-What does it mean to permanently modify a piece of data? Here is an example of a *destructive* method:
+Some test have been provided to help verify our solution.  We can add more as we discover bugs and edge cases.
 
+
+###Release 1 : The Dangerous Version
 ```ruby
-name = "Mr. Billy Jones"
-
-# The String#sub! method replaces one part of the ORIGINAL
-# string with another and returns the modified string.
-name.sub!('Jones', 'Jimmy Jones')
-# => "Mr. Billy Jimmy Jones"
-
-# When you call #sub! on a string, it permanently modifies
-# the original value.
-name
-# => "Mr. Billy Jimmy Jones"
+message = "Note: Come prepared for yoga."
+# => "Note: Come prepared for yoga."
+destroy_message!(message)
+# => "Note:"
+message
+# => "Note:"
 ```
+*Figure 3*.  The `destroy_message!` method is destructive.
+
+Now we'll write a more dangerous version:  `destroy_message!`.  This method will behave the same as `destroy_message` except that this dangerous method will have a side effect:  it's destructive and permanently modifies its argument (see Figure 3).
+
+Again, some tests have been provided.
+
 
 [bang post]: http://dablog.rubypal.com/2007/8/15/bang-methods-or-danger-will-rubyist
 [Matz comment]: https://www.ruby-forum.com/topic/176830#773946
