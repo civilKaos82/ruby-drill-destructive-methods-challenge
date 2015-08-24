@@ -31,11 +31,11 @@ describe 'destroy_message!' do
     let(:message) { 'Important: Learn how to learn.' }
 
     it 'returns the message prompt' do
-      expect(destroy_message(message)).to eq 'Important:'
+      expect(destroy_message!(message)).to eq 'Important:'
     end
 
     it 'modifies its argument be be just the prompt' do
-      expect { destroy_message(message) }.to change { message }.to('Important:')
+      expect { destroy_message!(message) }.to change { message }.to('Important:')
     end
   end
 
@@ -43,11 +43,11 @@ describe 'destroy_message!' do
     let(:message) { 'No alert here.' }
 
     it 'returns the whole message' do
-      expect(destroy_message(message)).to eq 'No alert here.'
+      expect(destroy_message!(message)).to eq 'No alert here.'
     end
 
     it 'does not modify its argument' do
-      expect { destroy_message(message) }.to_not change { message }
+      expect { destroy_message!(message) }.to_not change { message }
     end
   end
 end
