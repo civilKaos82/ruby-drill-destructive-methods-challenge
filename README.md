@@ -85,6 +85,10 @@ Now we'll write a more dangerous version:  `destroy_message!`.  This method will
 Again, some tests have been provided.
 
 
+## Conclusion
+When we write a method—or consume one, for that matter—we need to be aware of what all the method does.  Is it a pure function?  Or, does the method produce side effects?  What types of side effects?  How could they possibly impact our program?
+
+
 [bang post]: http://dablog.rubypal.com/2007/8/15/bang-methods-or-danger-will-rubyist
 [Matz comment]: https://www.ruby-forum.com/topic/176830#773946
 [pure functions]: https://en.wikipedia.org/wiki/Pure_function
