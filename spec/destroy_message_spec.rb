@@ -4,7 +4,7 @@ describe 'destroy_message' do
   context 'message contains an alert' do
     let(:message) { 'This message will self-destruct: You can\'t hug every cat.' }
 
-    it 'returns the message prompt' do
+    it 'returns the message alert' do
       expect(destroy_message(message)).to eq 'This message will self-destruct:'
     end
 
@@ -30,11 +30,11 @@ describe 'destroy_message!' do
   context 'message contains an alert' do
     let(:message) { 'Important: Learn how to learn.' }
 
-    it 'returns the message prompt' do
+    it 'returns the message alert' do
       expect(destroy_message!(message)).to eq 'Important:'
     end
 
-    it 'modifies its argument be be just the prompt' do
+    it 'modifies its argument be be just the alert' do
       expect { destroy_message!(message) }.to change { message }.to('Important:')
     end
   end
