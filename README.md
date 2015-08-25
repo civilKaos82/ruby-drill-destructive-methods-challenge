@@ -1,4 +1,4 @@
-# Ruby Drill Destructive Methods
+# Ruby Drill: Destructive Methods
 
 ## Summary
 ```ruby
