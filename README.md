@@ -19,13 +19,13 @@ What is the difference between the `to_snake_case` and `to_snake_case!` methods 
 
 In Ruby, it's not uncommon to encounter such pairs of methods—for example, `String#upcase` and `String#upcase!` or `Array#map` and `Array#map!`.  We'll be writing a pair of such methods in this challenge.
 
-We generally think of methods in terms of their *inputs* and *outputs*.  Arguments are passed into the methods.  Some value comes out of the method.  In Figure 1, we input the string `'SomeClassName'` to the `to_snake_case` method, and the string `'some_class_name` comes out of the method.  And that's all that happens.
+We generally think of methods in terms of their *inputs* and *outputs*.  Arguments are passed into the methods.  Some value comes out of the method.  In Figure 1, we input the string `'SomeClassName'` to the `to_snake_case` method, and the string `'some_class_name'` comes out of the method.  And that's all that happens.
 
 Methods that take input and provide an output are sometimes known as *[pure functions]* because they don't affect anything outside of themselves. The only things that change happen between `def` and `end`; the world before and after the method runs is exactly the same.
 
 Other methods have what we call *side effects*.  Side effects are changes that occur outside of a method when the method runs.  Maybe a file is written or text is printed to the command line.  Methods with side effects are also known as *impure functions*.
 
-A common side effect, as seen in Figure 1, is mutating, or changing, an object.  What happens to the value of our variable `class_name` when we pass it to the `to_snake_case!` method?  The object changes.  The variable `class_name` still points to the same string object, but the object has changed.  It's value was changed from `'SomeClassName'` to `'some_class_name'`—it was *modified in place*.  Methods that have the side effect of changing objects' values are often referred to as *destructive methods*.
+A common side effect, as seen in Figure 1, is mutating, or changing, an object.  What happens to the value of our variable `class_name` when we pass it to the `to_snake_case!` method?  The object changes.  The variable `class_name` still points to the same string object, but the object has changed.  Its value was changed from `'SomeClassName'` to `'some_class_name'`—it was *modified in place*.  Methods that have the side effect of changing objects' values are often referred to as *destructive methods*.
 
 
 ### Convention for Using ! in Method Names
